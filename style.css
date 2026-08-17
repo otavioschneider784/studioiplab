@@ -956,3 +956,8 @@ footer {
     }
 
 }
+/* ZOOM DO PRODUTO 3 */
+
+.produto-3 .carousel-slide img {
+   transform: scale(1.25);
+}
