@@ -890,3 +890,69 @@ footer {
     }
 
 }
+/* =========================
+   SETAS DO CARROSSEL
+========================= */
+
+.product-image.carousel {
+    position: relative;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    z-index: 100;
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+}
+
+.product-image.carousel:hover .carousel-arrow {
+    opacity: 1;
+}
+
+.carousel-arrow:hover {
+    background: rgba(0, 0, 0, 0.95);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+
+/* CELULAR: sem setas */
+
+@media (max-width: 600px) {
+
+    .carousel-arrow {
+        display: none !important;
+    }
+
+}
