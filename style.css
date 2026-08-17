@@ -956,8 +956,11 @@ footer {
     }
 
 }
-/* ZOOM DO PRODUTO 3 */
+/* =========================
+   ZOOM - PRODUTO 3
+========================= */
 
-.produto-3 .carousel-slide img {
-   transform: scale(1.30);
+.product-card.produto-3 .carousel-track .carousel-slide img {
+    transform: scale(1.30) !important;
+    transform-origin: center center !important;
 }
