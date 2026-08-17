@@ -25,8 +25,8 @@ a {
 }
 
 img {
-    width: 100%;
     display: block;
+    width: 100%;
 }
 
 .container {
@@ -67,7 +67,7 @@ img {
 }
 
 .logo span {
-    color: #777777;
+    color: #777;
 }
 
 .menu {
@@ -77,18 +77,18 @@ img {
 }
 
 .menu a {
-    color: #aaaaaa;
+    color: #aaa;
     font-size: 14px;
     transition: 0.3s;
 }
 
 .menu a:hover {
-    color: #ffffff;
+    color: #fff;
 }
 
 .nav-button {
     background: #f2f2f2;
-    color: #111111;
+    color: #111;
 
     padding: 11px 18px;
 
@@ -101,7 +101,7 @@ img {
 }
 
 .nav-button:hover {
-    background: #ffffff;
+    background: #fff;
     transform: translateY(-2px);
 }
 
@@ -140,7 +140,7 @@ img {
     font-weight: 700;
     letter-spacing: 2px;
 
-    color: #888888;
+    color: #888;
 
     margin-bottom: 20px;
 }
@@ -155,7 +155,7 @@ img {
 }
 
 .hero h1 span {
-    color: #777777;
+    color: #777;
 }
 
 .hero p {
@@ -191,22 +191,22 @@ img {
 
 .button.primary {
     background: #f2f2f2;
-    color: #111111;
+    color: #111;
 }
 
 .button.primary:hover {
-    background: #ffffff;
+    background: #fff;
     transform: translateY(-2px);
 }
 
 .button.secondary {
-    border: 1px solid #333333;
+    border: 1px solid #333;
     background: transparent;
-    color: #eeeeee;
+    color: #eee;
 }
 
 .button.secondary:hover {
-    border-color: #666666;
+    border-color: #666;
     background: #181818;
 }
 
@@ -230,11 +230,12 @@ img {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 2px;
-    color: #777777;
+    color: #777;
 }
 
 .section-title h2 {
     font-size: clamp(35px, 5vw, 55px);
+
     letter-spacing: -2px;
     line-height: 1.05;
 
@@ -260,6 +261,7 @@ img {
 
 .product-card {
     border: 1px solid #292929;
+
     background: #151515;
 
     border-radius: 12px;
@@ -271,7 +273,7 @@ img {
 
 .product-card:hover {
     transform: translateY(-5px);
-    border-color: #444444;
+    border-color: #444;
 }
 
 .product-image {
@@ -282,9 +284,10 @@ img {
     overflow: hidden;
 }
 
-.product-image img {
+.product-image > img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
 }
 
@@ -294,11 +297,13 @@ img {
 
 .product-info h3 {
     font-size: 18px;
+
     margin-bottom: 8px;
 }
 
 .product-info p {
-    color: #888888;
+    color: #888;
+
     font-size: 14px;
 
     min-height: 65px;
@@ -308,83 +313,82 @@ img {
 
 .product-price {
     font-size: 20px;
+
     font-weight: 700;
+
     color: #f2f2f2;
 
     margin-bottom: 15px;
 }
 
-.product-button {
-    display: block;
-
-    text-align: center;
-
-    background: #f2f2f2;
-    color: #111111;
-
-    padding: 11px;
-
-    border-radius: 6px;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    transition: 0.3s;
-}
-
-.product-button:hover {
-    background: #ffffff;
-}
-
 
 /* =========================
-   CARROSSEL DE PRODUTO
+   CARROSSEL
 ========================= */
 
 .product-image.carousel {
-    aspect-ratio: 1 / 1;
-    height: auto;
-
-    overflow: hidden;
     position: relative;
 
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
     background: #202020;
+
+    touch-action: pan-y;
 }
 
-.product-image.carousel .carousel-track {
+.carousel-track {
     display: flex;
 
-    width: 100%;
+    width: 200%;
     height: 100%;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+    transform: translateX(0);
 
-    scroll-snap-type: x mandatory;
+    transition: transform 0.35s ease;
 
-    scrollbar-width: none;
-
-    -webkit-overflow-scrolling: touch;
+    will-change: transform;
 }
 
-.product-image.carousel .carousel-track::-webkit-scrollbar {
-    display: none;
+.carousel-slide {
+    flex: 0 0 50%;
+
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
 }
 
-.product-image.carousel .carousel-track img {
-    min-width: 100%;
+.carousel-slide img {
     width: 100%;
-
     height: 100%;
 
     object-fit: contain;
     object-position: center;
 
-    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-drag: none;
 
-    scroll-snap-align: start;
+    pointer-events: none;
+}
 
-    display: block;
+
+/* =========================
+   ZOOM DO PRODUTO 2
+========================= */
+
+.produto-2 .carousel-slide:first-child img {
+    transform: scale(1.24) translateY(10px);
+}
+
+.produto-2 .carousel-slide:nth-child(2) img {
+    transform: scale(1.24);
 }
 
 
@@ -455,7 +459,7 @@ img {
 }
 
 .about-text h2 span {
-    color: #777777;
+    color: #777;
 }
 
 .about-text p {
@@ -495,7 +499,7 @@ img {
 }
 
 .about-box p {
-    color: #888888;
+    color: #888;
 
     font-size: 14px;
 }
@@ -507,20 +511,17 @@ img {
 
 .budget-section {
     background: #050505;
+
     color: white;
 
     padding: 100px 0;
 
-    border-top: 1px solid #222222;
-    border-bottom: 1px solid #222222;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
 }
 
 .budget {
     text-align: center;
-}
-
-.budget > span {
-    color: #777777;
 }
 
 .budget h2 {
@@ -532,7 +533,7 @@ img {
 }
 
 .budget p {
-    color: #999999;
+    color: #999;
 
     max-width: 500px;
 
@@ -553,10 +554,12 @@ img {
     display: inline-flex;
 
     align-items: center;
+
     gap: 9px;
 
     background: #f2f2f2;
-    color: #111111;
+
+    color: #111;
 
     padding: 13px 22px;
 
@@ -569,7 +572,7 @@ img {
 
 .whatsapp-button:hover {
     transform: translateY(-3px);
-    background: #ffffff;
+    background: #fff;
 }
 
 .whatsapp-button i {
@@ -610,7 +613,7 @@ img {
 .contact-card:hover {
     transform: translateY(-4px);
 
-    border-color: #444444;
+    border-color: #444;
 }
 
 .contact-card > i {
@@ -624,7 +627,7 @@ img {
 }
 
 .contact-card p {
-    color: #888888;
+    color: #888;
 
     font-size: 14px;
 }
@@ -653,7 +656,7 @@ footer {
 }
 
 .footer p {
-    color: #777777;
+    color: #777;
 
     font-size: 13px;
 
@@ -686,7 +689,8 @@ footer {
 
 .social a:hover {
     background: #f2f2f2;
-    color: #111111;
+
+    color: #111;
 }
 
 .copyright {
@@ -698,7 +702,7 @@ footer {
 
     font-size: 12px;
 
-    color: #666666;
+    color: #666;
 }
 
 
@@ -718,7 +722,8 @@ footer {
     border-radius: 50%;
 
     background: #f2f2f2;
-    color: #111111;
+
+    color: #111;
 
     display: flex;
 
@@ -737,7 +742,7 @@ footer {
 .floating-whatsapp:hover {
     transform: scale(1.08);
 
-    background: #ffffff;
+    background: #fff;
 }
 
 
@@ -764,7 +769,6 @@ footer {
     .menu {
         display: none;
     }
-
 }
 
 
@@ -822,81 +826,4 @@ footer {
         right: 18px;
         bottom: 18px;
     }
-
-    /* Carrossel no celular */
-
-    .product-image.carousel {
-        aspect-ratio: 1 / 1;
-    }
-
-    .product-image.carousel .carousel-track img {
-        object-fit: contain;
-    }
-
-}
-/* =========================
-   CARROSSEL DE PRODUTO
-========================= */
-
-.product-image.carousel {
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    position: relative;
-    background: #202020;
-}
-
-.product-image.carousel .carousel-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-
-    -webkit-overflow-scrolling: touch;
-}
-
-.product-image.carousel .carousel-track::-webkit-scrollbar {
-    display: none;
-}
-
-.product-image.carousel .carousel-track img {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-    object-position: center;
-
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-
-    display: block;
-}
-
-/* Zoom somente no Produto 2 */
-
-.produto-2 .carousel-track img {
-    object-fit: contain;
-    object-position: center;
-    transform: scale(1.24);
-}
-
-.produto-2 .carousel-track {
-    overflow-x: scroll;
-    overscroll-behavior-x: contain;
-}
-.produto-2 .carousel-track {
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0;
-}
-
-.produto-2 .carousel-track img {
-    flex: 0 0 100%;
-}
-.produto-2 .carousel-track img:first-child {
-    transform: scale(1.24) translateY(10px);
 }
