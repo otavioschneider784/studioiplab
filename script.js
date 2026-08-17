@@ -308,3 +308,60 @@ carousels.forEach((carousel) => {
     goToSlide(0);
 
 });
+// ================================
+// SETAS DO CARROSSEL
+// ================================
+
+document.querySelectorAll(".product-image.carousel").forEach((carousel) => {
+
+    const track = carousel.querySelector(".carousel-track");
+
+    const slides = carousel.querySelectorAll(".carousel-slide");
+
+    const prev = carousel.querySelector(".carousel-prev");
+
+    const next = carousel.querySelector(".carousel-next");
+
+
+    if (!track || slides.length < 2) return;
+
+
+    function currentSlide() {
+
+        return Math.round(
+            track.scrollLeft / track.clientWidth
+        );
+
+    }
+
+
+    prev.addEventListener("click", (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const current = currentSlide();
+
+        track.scrollTo({
+            left: (current - 1) * track.clientWidth,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    next.addEventListener("click", (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const current = currentSlide();
+
+        track.scrollTo({
+            left: (current + 1) * track.clientWidth,
+            behavior: "smooth"
+        });
+
+    });
+
+});
