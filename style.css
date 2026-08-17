@@ -884,6 +884,19 @@ footer {
     object-position: center;
     transform: scale(1.24);
 }
+
+.produto-2 .carousel-track {
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+}
+.produto-2 .carousel-track {
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0;
+}
+
+.produto-2 .carousel-track img {
+    flex: 0 0 100%;
+}
 .produto-2 .carousel-track img:first-child {
     transform: scale(1.24) translateY(10px);
 }
