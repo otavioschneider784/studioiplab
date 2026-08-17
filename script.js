@@ -34,7 +34,6 @@ const observer = new IntersectionObserver(
     }
 );
 
-
 elements.forEach((element) => {
 
     element.style.opacity = "0";
@@ -55,22 +54,25 @@ elements.forEach((element) => {
 
 const carousels = document.querySelectorAll(".carousel");
 
-
 carousels.forEach((carousel) => {
 
     const track = carousel.querySelector(".carousel-track");
 
     const slides = carousel.querySelectorAll(".carousel-slide");
 
+    const previousButton =
+        carousel.querySelector(".carousel-prev");
+
+    const nextButton =
+        carousel.querySelector(".carousel-next");
+
     if (!track || slides.length === 0) {
         return;
     }
 
-
     let currentSlide = 0;
 
     let startX = 0;
-
     let currentX = 0;
 
     let isDragging = false;
@@ -91,56 +93,36 @@ carousels.forEach((carousel) => {
     }
 
 
-    function startDrag(x) {
+    // ================================
+    // SETA ESQUERDA
+    // ================================
 
-        startX = x;
+    if (previousButton) {
 
-        currentX = x;
+        previousButton.addEventListener("click", (event) => {
 
-        isDragging = true;
-
-        track.style.transition = "none";
-
-    }
-
-
-    function moveDrag(x) {
-
-        if (!isDragging) {
-            return;
-        }
-
-        currentX = x;
-
-    }
-
-
-    function endDrag() {
-
-        if (!isDragging) {
-            return;
-        }
-
-        isDragging = false;
-
-        const difference = startX - currentX;
-
-        const threshold = 50;
-
-
-        if (difference > threshold) {
-
-            goToSlide(currentSlide + 1);
-
-        } else if (difference < -threshold) {
+            event.stopPropagation();
 
             goToSlide(currentSlide - 1);
 
-        } else {
+        });
 
-            goToSlide(currentSlide);
+    }
 
-        }
+
+    // ================================
+    // SETA DIREITA
+    // ================================
+
+    if (nextButton) {
+
+        nextButton.addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            goToSlide(currentSlide + 1);
+
+        });
 
     }
 
@@ -153,9 +135,11 @@ carousels.forEach((carousel) => {
         "touchstart",
         (event) => {
 
-            startDrag(
-                event.touches[0].clientX
-            );
+            startX = event.touches[0].clientX;
+
+            currentX = startX;
+
+            isDragging = true;
 
         },
         {
@@ -168,9 +152,11 @@ carousels.forEach((carousel) => {
         "touchmove",
         (event) => {
 
-            moveDrag(
-                event.touches[0].clientX
-            );
+            if (!isDragging) {
+                return;
+            }
+
+            currentX = event.touches[0].clientX;
 
         },
         {
@@ -183,7 +169,34 @@ carousels.forEach((carousel) => {
         "touchend",
         () => {
 
-            endDrag();
+            if (!isDragging) {
+                return;
+            }
+
+            isDragging = false;
+
+            const difference = startX - currentX;
+
+            const threshold = 50;
+
+
+            if (difference > threshold) {
+
+                goToSlide(currentSlide + 1);
+
+            }
+
+            else if (difference < -threshold) {
+
+                goToSlide(currentSlide - 1);
+
+            }
+
+            else {
+
+                goToSlide(currentSlide);
+
+            }
 
         }
     );
@@ -197,7 +210,15 @@ carousels.forEach((carousel) => {
         "mousedown",
         (event) => {
 
-            startDrag(event.clientX);
+            if (event.target.closest(".carousel-arrow")) {
+                return;
+            }
+
+            startX = event.clientX;
+
+            currentX = startX;
+
+            isDragging = true;
 
         }
     );
@@ -208,7 +229,9 @@ carousels.forEach((carousel) => {
         (event) => {
 
             if (isDragging) {
-                moveDrag(event.clientX);
+
+                currentX = event.clientX;
+
             }
 
         }
@@ -219,7 +242,34 @@ carousels.forEach((carousel) => {
         "mouseup",
         () => {
 
-            endDrag();
+            if (!isDragging) {
+                return;
+            }
+
+            isDragging = false;
+
+            const difference = startX - currentX;
+
+            const threshold = 50;
+
+
+            if (difference > threshold) {
+
+                goToSlide(currentSlide + 1);
+
+            }
+
+            else if (difference < -threshold) {
+
+                goToSlide(currentSlide - 1);
+
+            }
+
+            else {
+
+                goToSlide(currentSlide);
+
+            }
 
         }
     );
@@ -230,14 +280,18 @@ carousels.forEach((carousel) => {
         () => {
 
             if (isDragging) {
-                endDrag();
+
+                isDragging = false;
+
+                goToSlide(currentSlide);
+
             }
 
         }
     );
 
 
-    // Evita seleção acidental da imagem
+    // Impede arrastar a imagem diretamente
 
     carousel.addEventListener(
         "dragstart",
@@ -249,7 +303,7 @@ carousels.forEach((carousel) => {
     );
 
 
-    // Começa sempre na primeira imagem
+    // Começa na primeira imagem
 
     goToSlide(0);
 
